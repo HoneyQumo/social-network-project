@@ -1,0 +1,18 @@
+.messages {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.messages__users {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.messages__users > *:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.messages__dialog {
+    font-size: 18px;
+    padding: 10px;
+}

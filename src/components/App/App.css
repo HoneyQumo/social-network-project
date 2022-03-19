@@ -1,0 +1,14 @@
+.container {
+    width: 1400px;
+    margin: 0px auto;
+
+    display: grid;
+
+    grid-template-areas:
+        "header header"
+        "navbar content";
+
+    grid-template-columns: 2fr 10fr;
+    grid-template-rows: 80px 1fr;
+    gap: 10px;
+}
