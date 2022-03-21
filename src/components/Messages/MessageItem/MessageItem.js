@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './MessageItem.css'
+import './MessageItem.css';
 
 const MessageItem = ({ name, id, imageUrl }) => {
 
@@ -15,6 +15,6 @@ const MessageItem = ({ name, id, imageUrl }) => {
             </div>
         </NavLink>
     );
-}
+};
 
-export default MessageItem
+export default MessageItem;

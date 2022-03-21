@@ -1,0 +1,10 @@
+.chat__items {
+    color: #fff;
+    background-color: #4d7ea8;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.chat__item {
+}

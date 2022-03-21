@@ -12,7 +12,9 @@
     margin-bottom: 10px;
 }
 
-.messages__dialog {
+.messages__chat {
     font-size: 18px;
+    background-color: #272932;
     padding: 10px;
+    border-radius: 10px;
 }

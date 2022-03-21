@@ -1,25 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import './Messages.css'
+import './Messages.css';
 import MessageItem from './MessageItem/MessageItem';
-import DialogPost from './DialogPost/DialogPost';
+import ChatItems from './ChatItems/ChatItems';
 
-const Messages = () => {
-
-    const usersMessagesData = [
-        { id: 1, name: 'Никита', imageUrl: 'graphic-design-xnimrodx-lineal-color-xnimrodx.png' },
-        { id: 2, name: 'Елена', imageUrl: 'esport-xnimrodx-lineal-color-xnimrodx-2.png' },
-        { id: 3, name: 'Иван', imageUrl: 'retirement-xnimrodx-lineal-color-xnimrodx-2.png' },
-        { id: 4, name: 'Дмитрий', imageUrl: 'fitness-and-gym-xnimrodx-lineal-color-xnimrodx-2.png' },
-        { id: 5, name: 'Ирина', imageUrl: 'encryption-xnimrodx-lineal-color-xnimrodx.png' },
-    ];
-
-    const dialogsPostData = [
-        { id: 1, msg: 'Hello' },
-        { id: 2, msg: 'What is you name?' },
-        { id: 3, msg: 'How are you?' },
-    ];
-
+const Messages = ({ usersMessagesData, dialogsPostData }) => {
 
     return (
         <div className='messages'>
@@ -32,17 +17,17 @@ const Messages = () => {
                     })
                 }
             </div>
-            <div className='messages__dialog'>
+            <div className='messages__chat'>
                 {
                     dialogsPostData.map(({ id, msg }) => {
                         return (
-                            <DialogPost key={id} id={id} msg={msg} />
+                            <ChatItems key={id} id={id} msg={msg} />
                         );
                     })
                 }
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Messages
+export default Messages;

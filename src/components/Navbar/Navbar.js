@@ -1,7 +1,7 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-import './Navbar.css'
+import './Navbar.css';
 
 
 const Navbar = () => {
@@ -23,7 +23,7 @@ const Navbar = () => {
                 <NavLink to='/settings/'>Settings</NavLink>
             </li>
         </ul>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;
