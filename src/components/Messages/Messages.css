@@ -14,7 +14,8 @@
 
 .messages__chat {
     font-size: 18px;
-    background-color: #272932;
+    background-color: #a1acc0;
     padding: 10px;
-    border-radius: 10px;
+    margin: -10px -10px -10px 0px;
+    border-radius: 5px;
 }

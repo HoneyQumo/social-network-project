@@ -4,13 +4,21 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import './index.css';
 import App from './components/App/App';
-import state from './Redux/state';
+import store from './Redux/state';
 
+export const renderEntireTree = (state) => {
+    ReactDOM.render(
+        <Router>
+            <App
+                state={state}
+                addPost={store.addPost.bind(store)}
+                updateNewPostText={store.updateNewPostText.bind(store)}
+            />
+        </Router>,
+        document.getElementById('root')
+    );
+};
 
-ReactDOM.render(
+renderEntireTree(store.getState());
 
-    <Router>
-        <App state={state} />
-    </Router>,
-    document.getElementById('root')
-);
+store.subscribe(renderEntireTree);

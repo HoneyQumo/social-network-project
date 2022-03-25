@@ -8,19 +8,19 @@ const Navbar = () => {
     return (
         <ul className='navbar'>
             <li>
-                <NavLink to='/profile/'>Profile</NavLink>
+                <NavLink to='/profile/'>Профиль</NavLink>
             </li>
             <li>
-                <NavLink to='/messages/'>Messages</NavLink>
+                <NavLink to='/messages/'>Сообщения</NavLink>
             </li>
             <li>
-                <NavLink to='/news/'>News</NavLink>
+                <NavLink to='/news/'>Новости</NavLink>
             </li>
             <li>
-                <NavLink to='/music/'>Music</NavLink>
+                <NavLink to='/music/'>Музыка</NavLink>
             </li>
             <li>
-                <NavLink to='/settings/'>Settings</NavLink>
+                <NavLink to='/settings/'>Настройки</NavLink>
             </li>
         </ul>
     );

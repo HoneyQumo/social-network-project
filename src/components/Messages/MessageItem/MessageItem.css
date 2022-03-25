@@ -6,7 +6,8 @@
 
 .messages__user.active {
     color: #4d7ea8;
-    text-decoration: underline;
+    background-color: #a1acc0;
+    border-radius: 50px 0px 0px 50px;
 }
 
 .user__avatar {

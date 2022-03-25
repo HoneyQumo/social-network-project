@@ -1,19 +1,27 @@
 import React from 'react';
-import Content from '../Content/Content';
 
+import './App.css';
+import Content from '../Content/Content';
 import Header from '../Header/Header';
 import Navbar from '../Navbar/Navbar';
-import './App.css';
 
-const App = ({ state }) => {
+const App = ({ state, addPost, updateNewPostText }) => {
 
-    const { usersMessagesData, dialogsPostData } = state;
+    const { messagesUsersData, messagesChatData } = state.messagePage;
+    const { postsData, newPostText } = state.profilePage;
 
     return (
         <div className='container'>
             <Header />
             <Navbar />
-            <Content usersMessagesData={usersMessagesData} dialogsPostData={dialogsPostData} />
+            <Content
+                messagesUsersData={messagesUsersData}
+                messagesChatData={messagesChatData}
+                postsData={postsData}
+                newPostText={newPostText}
+                addPost={addPost}
+                updateNewPostText={updateNewPostText}
+            />
         </div>
     );
 };

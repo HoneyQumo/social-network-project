@@ -1,0 +1,31 @@
+.mypost {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+.mypost > *:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.mypost__area {
+    resize: none;
+}
+
+.mypost__button {
+    align-self: flex-end;
+    font-size: 16px;
+    padding: 6px 12px;
+    color: #fff;
+    background-color: #4d7ea8;
+    border-radius: 32px;
+}
+
+.mypost__title {
+    font-size: 24px;
+    font-weight: 500;
+    border-bottom: 1px solid #8284895b;
+}
+
+.myposts > *:not(:last-child) {
+    margin-bottom: 15px;
+}

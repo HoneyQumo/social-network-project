@@ -4,13 +4,13 @@ import './Messages.css';
 import MessageItem from './MessageItem/MessageItem';
 import ChatItems from './ChatItems/ChatItems';
 
-const Messages = ({ usersMessagesData, dialogsPostData }) => {
+const Messages = ({ messagesUsersData, messagesChatData }) => {
 
     return (
         <div className='messages'>
             <div className='messages__users'>
                 {
-                    usersMessagesData.map(({ id, name, imageUrl }) => {
+                    messagesUsersData.map(({ id, name, imageUrl }) => {
                         return (
                             <MessageItem key={id} id={id} name={name} imageUrl={imageUrl} />
                         );
@@ -19,7 +19,7 @@ const Messages = ({ usersMessagesData, dialogsPostData }) => {
             </div>
             <div className='messages__chat'>
                 {
-                    dialogsPostData.map(({ id, msg }) => {
+                    messagesChatData.map(({ id, msg }) => {
                         return (
                             <ChatItems key={id} id={id} msg={msg} />
                         );
