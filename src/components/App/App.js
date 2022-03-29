@@ -5,7 +5,7 @@ import Content from '../Content/Content';
 import Header from '../Header/Header';
 import Navbar from '../Navbar/Navbar';
 
-const App = ({ state, addPost, updateNewPostText }) => {
+const App = ({ state, dispatch }) => {
 
     const { messagesUsersData, messagesChatData } = state.messagePage;
     const { postsData, newPostText } = state.profilePage;
@@ -19,8 +19,7 @@ const App = ({ state, addPost, updateNewPostText }) => {
                 messagesChatData={messagesChatData}
                 postsData={postsData}
                 newPostText={newPostText}
-                addPost={addPost}
-                updateNewPostText={updateNewPostText}
+                dispatch={dispatch}
             />
         </div>
     );

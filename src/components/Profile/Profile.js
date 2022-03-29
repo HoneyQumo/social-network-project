@@ -3,7 +3,7 @@ import React from 'react';
 import './Profile.css';
 import MyPost from './MyPosts/MyPost';
 
-const Profile = ({ postsData, newPostText, addPost, updateNewPostText }) => {
+const Profile = ({ postsData, newPostText, dispatch }) => {
     return (
         <div className='profile__wrapper'>
             <div className='profile'>
@@ -20,7 +20,7 @@ const Profile = ({ postsData, newPostText, addPost, updateNewPostText }) => {
                 </div>
             </div>
 
-            <MyPost postsData={postsData} newPostText={newPostText} addPost={addPost} updateNewPostText={updateNewPostText} />
+            <MyPost postsData={postsData} newPostText={newPostText} dispatch={dispatch} />
         </div>
     );
 };

@@ -1,3 +1,6 @@
+const ADD_POST = 'ADD_POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+
 const store = {
     _state: {
         profilePage: {
@@ -32,28 +35,41 @@ const store = {
         console.log('State was changed');
     },
 
-    addPost() {
-        const newPost = {
-            id: 4,
-            text: this._state.profilePage.newPostText,
-            likeCount: 0
-
-        };
-        this._state.profilePage.postsData.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
-    },
-
     subscribe(observer) {
         this._callSubscriber = observer;
     },
+
+    dispatch(action) {//      {type: 'ADD_POST'}
+        if (action.type === ADD_POST) {
+            const newPost = {
+                id: 4,
+                text: this._state.profilePage.newPostText,
+                likeCount: 0
+            };
+            this._state.profilePage.postsData.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }
+    },
 };
 
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    };
+};
+
+export const updateNewPostTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    };
+};
 
 window.store = store;
 

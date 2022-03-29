@@ -2,14 +2,19 @@ import React from 'react';
 
 import './MyPost.css';
 import Post from '../Post/Post';
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../Redux/state';
 
-const MyPost = ({ postsData, newPostText, addPost, updateNewPostText }) => {
+const MyPost = ({ postsData, newPostText, dispatch }) => {
 
     const newPostElement = React.createRef();
 
     const onPostChange = () => {
         const text = newPostElement.current.value;
-        updateNewPostText(text);
+        dispatch(updateNewPostTextActionCreator(text))
+    };
+
+    const addPost = () => {
+        dispatch(addPostActionCreator())
     };
 
     return (
