@@ -20,4 +20,4 @@ export const renderEntireTree = (state) => {
 
 renderEntireTree(store.getState());
 
-store.subscribe(renderEntireTree);
+store.subscribe(renderEntireTree); 
