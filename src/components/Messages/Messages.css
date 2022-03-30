@@ -13,9 +13,27 @@
 }
 
 .messages__chat {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     font-size: 18px;
     background-color: #a1acc0;
     padding: 10px;
     margin: -10px -10px -10px 0px;
     border-radius: 5px;
+}
+
+.chat__field {
+    display: flex;
+}
+.chat__text {
+    resize: none;
+    border-radius: 5px 0 0 5px;
+    padding: 5px 10px 5px 10px;
+    width: 100%;
+}
+
+.chat__btn {
+    border-radius: 0 5px 5px 0;
+    padding: 4px 12px 4px 12px;
 }

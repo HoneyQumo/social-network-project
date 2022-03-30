@@ -3,8 +3,19 @@ import React from 'react';
 import './Messages.css';
 import MessageItem from './MessageItem/MessageItem';
 import ChatItems from './ChatItems/ChatItems';
+import { sendMessageActionCreator, updateNewMessageBodyActionCreator } from '../../reducers/messgaes-reducer';
 
-const Messages = ({ messagesUsersData, messagesChatData }) => {
+const Messages = ({ messagesUsersData, messagesChatData, newMessageBody, dispatch }) => {
+
+
+    const onSendMessageClick = () => {
+        dispatch(sendMessageActionCreator());
+    };
+
+    const onNewMessageChange = (e) => {
+        const body = e.target.value;
+        dispatch(updateNewMessageBodyActionCreator(body));
+    };
 
     return (
         <div className='messages'>
@@ -18,13 +29,29 @@ const Messages = ({ messagesUsersData, messagesChatData }) => {
                 }
             </div>
             <div className='messages__chat'>
-                {
-                    messagesChatData.map(({ id, msg }) => {
-                        return (
-                            <ChatItems key={id} id={id} msg={msg} />
-                        );
-                    })
-                }
+                <div>
+                    {
+                        messagesChatData.map(({ id, msg }) => {
+                            return (
+                                <ChatItems key={id} id={id} msg={msg} />
+                            );
+                        })
+                    }
+                </div>
+                <div className='chat__field'>
+                    <textarea
+                        placeholder='Напишите сообщение...'
+                        className='chat__text'
+                        value={newMessageBody}
+                        onChange={onNewMessageChange}
+                    />
+                    <button
+                        className='chat__btn'
+                        onClick={onSendMessageClick}
+                    >
+                        Отправить
+                    </button>
+                </div>
             </div>
         </div>
     );

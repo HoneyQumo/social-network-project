@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import './index.css';
 import App from './components/App/App';
-import store from './Redux/state';
+import store from './Redux/store';
 
 export const renderEntireTree = (state) => {
     ReactDOM.render(

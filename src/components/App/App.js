@@ -6,8 +6,7 @@ import Header from '../Header/Header';
 import Navbar from '../Navbar/Navbar';
 
 const App = ({ state, dispatch }) => {
-
-    const { messagesUsersData, messagesChatData } = state.messagePage;
+    const { messagesUsersData, messagesChatData, newMessageBody } = state.messagePage;
     const { postsData, newPostText } = state.profilePage;
 
     return (
@@ -20,6 +19,7 @@ const App = ({ state, dispatch }) => {
                 postsData={postsData}
                 newPostText={newPostText}
                 dispatch={dispatch}
+                newMessageBody={newMessageBody}
             />
         </div>
     );

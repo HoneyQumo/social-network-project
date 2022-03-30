@@ -1,5 +1,6 @@
-const ADD_POST = 'ADD_POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+import messagesReducer from "../reducers/messgaes-reducer";
+import profileReducer from "../reducers/profile-reducer";
+
 
 const store = {
     _state: {
@@ -24,6 +25,7 @@ const store = {
                 { id: 2, msg: 'What is you name?' },
                 { id: 3, msg: 'How are you?' },
             ],
+            newMessageBody: '',
         }
     },
 
@@ -39,36 +41,13 @@ const store = {
         this._callSubscriber = observer;
     },
 
-    dispatch(action) {//      {type: 'ADD_POST'}
-        if (action.type === ADD_POST) {
-            const newPost = {
-                id: 4,
-                text: this._state.profilePage.newPostText,
-                likeCount: 0
-            };
-            this._state.profilePage.postsData.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber(this._state);
+    dispatch(action) {
 
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagePage = messagesReducer(this._state.messagePage, action);
+
+        this._callSubscriber(this._state);
     },
-};
-
-
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
-    };
-};
-
-export const updateNewPostTextActionCreator = (text) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text
-    };
 };
 
 window.store = store;
