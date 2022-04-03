@@ -5,22 +5,13 @@ import Content from '../Content/Content';
 import Header from '../Header/Header';
 import Navbar from '../Navbar/Navbar';
 
-const App = ({ state, dispatch }) => {
-    const { messagesUsersData, messagesChatData, newMessageBody } = state.messagePage;
-    const { postsData, newPostText } = state.profilePage;
+const App = () => {
 
     return (
         <div className='container'>
             <Header />
             <Navbar />
-            <Content
-                messagesUsersData={messagesUsersData}
-                messagesChatData={messagesChatData}
-                postsData={postsData}
-                newPostText={newPostText}
-                dispatch={dispatch}
-                newMessageBody={newMessageBody}
-            />
+            <Content />
         </div>
     );
 };

@@ -3,49 +3,59 @@ import React from 'react';
 import './MyPost.css';
 import Post from '../Post/Post';
 import { updateNewPostTextActionCreator, addPostActionCreator } from '../../../reducers/profile-reducer';
+import { StoreConsumer } from '../../../Context/Context';
 
 
-const MyPost = ({ postsData, newPostText, dispatch }) => {
-
-    const newPostElement = React.createRef();
-
-    const onPostChange = () => {
-        const text = newPostElement.current.value;
-        dispatch(updateNewPostTextActionCreator(text))
-    };
-
-    const addPost = () => {
-        dispatch(addPostActionCreator())
-    };
+const MyPost = () => {
 
     return (
-        <div className='mypost'>
-            <h2 className='mypost__title'>Записи</h2>
+        <StoreConsumer>
+            {store => {
 
-            <textarea
-                className='mypost__area'
-                onChange={onPostChange}
-                value={newPostText}
-                ref={newPostElement}
-            />
+                const { postsData, newPostText } = store.getState().profilePage;
+                const { dispatch } = store;
 
-            <button
-                className='mypost__button'
-                onClick={addPost}
-            >
-                Добавить
-            </button>
+                const newPostElement = React.createRef();
 
-            <div className='myposts'>
-                {
-                    postsData.map(({ id, text, likeCount }) => {
-                        return (
-                            <Post key={id} text={text} likeCount={likeCount} />
-                        );
-                    })
-                }
-            </div>
-        </div>
+                const onPostChange = () => {
+                    const text = newPostElement.current.value;
+                    dispatch(updateNewPostTextActionCreator(text))
+                };
+
+                const addPost = () => {
+                    dispatch(addPostActionCreator())
+                };
+                return (
+                    <div className='mypost'>
+                        <h2 className='mypost__title'>Записи</h2>
+
+                        <textarea
+                            className='mypost__area'
+                            onChange={onPostChange}
+                            value={newPostText}
+                            ref={newPostElement}
+                        />
+
+                        <button
+                            className='mypost__button'
+                            onClick={addPost}
+                        >
+                            Добавить
+                        </button>
+
+                        <div className='myposts'>
+                            {
+                                postsData.map(({ id, text, likeCount }) => {
+                                    return (
+                                        <Post key={id} text={text} likeCount={likeCount} />
+                                    );
+                                })
+                            }
+                        </div>
+                    </div>
+                )
+            }}
+        </StoreConsumer>
     );
 };
 

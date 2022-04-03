@@ -1,5 +1,8 @@
 import React from 'react'
 
-const Context = React.createContext(null);
+const {
+    Provider: StoreProvider,
+    Consumer: StoreConsumer
+} = React.createContext();
 
-export default Context;
+export { StoreProvider, StoreConsumer };

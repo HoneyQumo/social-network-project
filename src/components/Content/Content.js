@@ -8,23 +8,12 @@ import Profile from '../Profile/Profile';
 import Settings from '../Settings/Settings';
 import './Content.css';
 
-const Content = ({ messagesUsersData, messagesChatData, postsData, newPostText, newMessageBody, dispatch }) => {
+const Content = () => {
     return (
         <div className='content'>
             <Routes >
-                <Route path='/profile'
-                    element={<Profile postsData={postsData} newPostText={newPostText} dispatch={dispatch} />}
-                />
-                <Route path='/messages/*'
-                    element={
-                        <Messages
-                            messagesUsersData={messagesUsersData}
-                            messagesChatData={messagesChatData}
-                            dispatch={dispatch}
-                            newMessageBody={newMessageBody}
-                        />
-                    }
-                />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/messages/*' element={<Messages />} />
                 <Route path='/news' element={<News />} />
                 <Route path='/music' element={<Music />} />
                 <Route path='/settings' element={<Settings />} />
