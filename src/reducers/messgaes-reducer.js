@@ -17,20 +17,29 @@ const initialState = {
     newMessageBody: '',
 };
 
+let maxId = 4;
+
 const messagesReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.msg;
-            return state;
+        case UPDATE_NEW_MESSAGE_BODY: {
 
+            const newState = { ...state };
+            newState.newMessageBody = action.msg;
+            return newState;
+        }
         case SEND_MESSAGE:
-            const text = state.newMessageBody;
-            state.newMessageBody = '';
-            state.messagesChatData.push({ id: 4, msg: text });
-            return state;
 
+            const text = state.newMessageBody;
+            const newArray = [...state.messagesChatData.slice(), { id: maxId++, msg: text }]
+
+            const newState = { ...state };
+            newState.messagesChatData = { ...state.messagesChatData };
+            newState.messagesChatData = newArray;
+
+            newState.newMessageBody = '';
+            return newState;
         default:
             return state;
     };

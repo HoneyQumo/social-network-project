@@ -10,24 +10,36 @@ const initialState = {
     newPostText: 'honeyqumo'
 };
 
+let maxId = 4;
+
+
+
 const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case ADD_POST:
+        case ADD_POST: {
             const newPost = {
-                id: 4,
+                id: maxId++,
                 text: state.newPostText,
                 likeCount: 0
             };
-            state.postsData.push(newPost);
-            state.newPostText = '';
-            return state;
+            const newArray = [
+                ...state.postsData.slice(),
+                newPost
+            ];
 
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
-
+            const newState = { ...state };
+            newState.postsData = { ...state.postsData };
+            newState.postsData = newArray;
+            newState.newPostText = '';
+            return newState;
+        }
+        case UPDATE_NEW_POST_TEXT: {
+            const newState = { ...state };
+            newState.newPostText = action.newText;
+            return newState;
+        }
         default:
             return state;
     };
