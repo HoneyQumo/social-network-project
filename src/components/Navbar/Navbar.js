@@ -22,6 +22,9 @@ const Navbar = () => {
             <li>
                 <NavLink to='/settings/'>Настройки</NavLink>
             </li>
+            <li >
+                <NavLink to='/users/'>Пользователи</NavLink>
+            </li>
         </ul>
     );
 };

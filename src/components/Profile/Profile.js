@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './Profile.css';
-import MyPost from './MyPosts/MyPost';
+import MyPosts from './MyPosts/MyPosts';
 
 const Profile = () => {
     return (
@@ -20,7 +20,7 @@ const Profile = () => {
                 </div>
             </div>
 
-            <MyPost />
+            <MyPosts />
         </div>
     );
 };

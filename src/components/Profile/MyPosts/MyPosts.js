@@ -1,12 +1,12 @@
 import React from 'react';
 
-import './MyPost.css';
+import './MyPosts.css';
 import Post from '../Post/Post';
 import { updateNewPostTextActionCreator, addPostActionCreator } from '../../../reducers/profile-reducer';
 import { connect } from 'react-redux';
 
 
-const MyPost = ({ postsData, newPostText, addPost, onPostChange }) => {
+const MyPosts = ({ postsData, newPostText, addPost, onPostChange }) => {
 
     return (
         <div className='mypost'>
@@ -58,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyPost);
+export default connect(mapStateToProps, mapDispatchToProps)(MyPosts);

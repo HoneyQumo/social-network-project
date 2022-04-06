@@ -4,7 +4,7 @@
     width: 250px;
 }
 .mypost > *:not(:last-child) {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .mypost__area {
@@ -13,11 +13,23 @@
 
 .mypost__button {
     align-self: flex-end;
-    font-size: 16px;
-    padding: 6px 12px;
-    color: #fff;
     background-color: #4d7ea8;
-    border-radius: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    height: 25px;
+    font-size: 14px;
+    width: 95px;
+    color: #fff;
+}
+.mypost__button:hover {
+    filter: brightness(110%);
+    transition: filter 0.3s ease 0s;
+}
+
+.mypost__button:active {
+    filter: brightness(90%);
 }
 
 .mypost__title {

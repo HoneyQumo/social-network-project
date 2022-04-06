@@ -1,5 +1,5 @@
 .container {
-    width: 1400px;
+    width: 1200px;
     margin: 0px auto;
 
     display: grid;
@@ -8,7 +8,7 @@
         "header header"
         "navbar content";
 
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 1fr 4fr;
     grid-template-rows: 80px 1fr;
     gap: 10px;
 }

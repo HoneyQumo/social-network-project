@@ -1,5 +1,5 @@
-import messagesReducer from "../reducers/messgaes-reducer";
-import profileReducer from "../reducers/profile-reducer";
+// import messagesReducer from "../reducers/messgaes-reducer";
+// import profileReducer from "../reducers/profile-reducer";
 
 
 const store = {

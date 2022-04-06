@@ -37,3 +37,9 @@
     border-radius: 0 5px 5px 0;
     padding: 4px 12px 4px 12px;
 }
+.chat__btn:hover {
+    filter: brightness(95%);
+}
+.chat__btn:active {
+    filter: brightness(85%);
+}
