@@ -23,23 +23,20 @@ const messagesReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case UPDATE_NEW_MESSAGE_BODY: {
+        case UPDATE_NEW_MESSAGE_BODY:
+            return {
+                ...state,
+                newMessageBody: action.msg
+            };
 
-            const newState = { ...state };
-            newState.newMessageBody = action.msg;
-            return newState;
-        }
         case SEND_MESSAGE:
-
             const text = state.newMessageBody;
-            const newArray = [...state.messagesChatData.slice(), { id: maxId++, msg: text }]
+            return {
+                ...state,
+                newMessageBody: '',
+                messagesChatData: [...state.messagesChatData, { id: maxId++, msg: text }]
+            };
 
-            const newState = { ...state };
-            newState.messagesChatData = { ...state.messagesChatData };
-            newState.messagesChatData = newArray;
-
-            newState.newMessageBody = '';
-            return newState;
         default:
             return state;
     };

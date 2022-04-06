@@ -24,22 +24,19 @@ const profileReducer = (state = initialState, action) => {
                 text: state.newPostText,
                 likeCount: 0
             };
-            const newArray = [
-                ...state.postsData.slice(),
-                newPost
-            ];
+            return {
+                ...state,
+                newPostText: '',
+                postsData: [...state.postsData, newPost]
+            };
+        }
 
-            const newState = { ...state };
-            newState.postsData = { ...state.postsData };
-            newState.postsData = newArray;
-            newState.newPostText = '';
-            return newState;
-        }
-        case UPDATE_NEW_POST_TEXT: {
-            const newState = { ...state };
-            newState.newPostText = action.newText;
-            return newState;
-        }
+        case UPDATE_NEW_POST_TEXT:
+            return {
+                ...state,
+                newPostText: action.newText
+            };
+
         default:
             return state;
     };
