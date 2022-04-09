@@ -1,15 +1,14 @@
 const TOGGLE_FOLLOW = "TOGGLE_FOLLOW";
-const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 
-const IMAGE_URL = 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/';
+// const IMAGE_URL = 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/';
 
 const initialState = {
     users: [
-        { id: 1, imageUrl: `${IMAGE_URL}500.jpg`, fullName: 'Никита Славин', followed: false, status: 'Я разработчик', location: { city: 'Тверь', country: 'Россия' } },
-        { id: 2, imageUrl: `${IMAGE_URL}783.jpg`, fullName: 'Елена Дмитриева', followed: true, status: 'Nestle-маркетолог', location: { city: 'Москва', country: 'Россия' } },
-        { id: 3, imageUrl: `${IMAGE_URL}1205.jpg`, fullName: 'Дмитрий Ерохин', followed: false, status: 'йоу йоу', location: { city: 'Минск', country: 'Беларусь' } },
-        { id: 4, imageUrl: `${IMAGE_URL}409.jpg`, fullName: 'Nigel Raynor', followed: false, status: 'Direct Integration Orchestrator', location: { city: 'South Hilariostad', country: 'Bhutan' } },
+        // { id: 1, imageUrl: `${IMAGE_URL}500.jpg`, fullName: 'Никита Славин', followed: false, status: 'Я разработчик', location: { city: 'Тверь', country: 'Россия' } },
+        // { id: 2, imageUrl: `${IMAGE_URL}783.jpg`, fullName: 'Елена Дмитриева', followed: true, status: 'Nestle-маркетолог', location: { city: 'Москва', country: 'Россия' } },
+        // { id: 3, imageUrl: `${IMAGE_URL}1205.jpg`, fullName: 'Дмитрий Ерохин', followed: false, status: 'йоу йоу', location: { city: 'Минск', country: 'Беларусь' } },
+        // { id: 4, imageUrl: `${IMAGE_URL}409.jpg`, fullName: 'Nigel Raynor', followed: false, status: 'Direct Integration Orchestrator', location: { city: 'South Hilariostad', country: 'Bhutan' } },
     ],
 };
 
