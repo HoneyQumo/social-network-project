@@ -82,3 +82,27 @@
     margin-bottom: 6px;
     color: #27293286;
 }
+.users__pagination,
+.users__selected-page {
+    cursor: pointer;
+}
+.users__pagination,
+.users__selected-page:not(:last-child) {
+    margin-right: 1.5px;
+}
+.users__pagination {
+    font-size: 16px;
+    color: #828489;
+    transition: all 0.2s ease 0s;
+}
+
+.users__pagination:hover {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.users__selected-page {
+    font-size: 18px;
+    font-weight: 800;
+    color: #272932;
+}

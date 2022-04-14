@@ -8,23 +8,50 @@ import userPhoto from '../../assets/images/default-avatar-icon.png';
 
 export default class Users extends Component {
 
-    constructor(props) {
-        super(props);
+    componentDidMount() {
         axios
-            .get('https://social-network.samuraijs.com/api/1.0/users')
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(res => {
+                this.props.setUsers(res.data.items);
+                this.props.setUsersTotalCount(res.data.totalCount);
+            });
+    };
+
+    onPageChenged = (pageNumber) => {
+        this.props.setCurrentPage(pageNumber);
+
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then(res => {
                 this.props.setUsers(res.data.items);
             });
-    }
-
-
+    };
 
     render() {
 
-        const { users, toggleFollow, setUsers } = this.props;
+        const { users, toggleFollow, totalUsersCount, pageSize } = this.props;
 
+        const pageCount = Math.ceil(totalUsersCount / pageSize);
+        const pages = [];
+        for (let i = 1; i <= pageCount; i++) {
+            pages.push(i);
+        }
         return (
             <div className='users'>
+                <div>
+                    {
+                        pages.map(page => {
+                            return (
+                                <span
+                                    className={this.props.currentPage === page ? 'users__selected-page' : 'users__pagination'}
+                                    onClick={() => { this.onPageChenged(page) }}
+                                >
+                                    {page}
+                                </span>
+                            );
+                        })
+                    }
+                </div>
                 {
                     users.map(user => {
                         return (
@@ -55,6 +82,6 @@ export default class Users extends Component {
                     })
                 }
             </div>
-        )
+        );
     };
 };
