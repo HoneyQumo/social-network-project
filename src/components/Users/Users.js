@@ -27,31 +27,36 @@ export default class Users extends Component {
             });
     };
 
+    pagesCreator = (pages, pagesCount, currentPage) => {
+        if (pagesCount > 10) {
+            if (currentPage > 5) {
+                for (let i = currentPage - 4; i <= currentPage + 5; i++) {
+                    pages.push(i)
+                    if (i === pagesCount) break
+                }
+            } else {
+                for (let i = 1; i <= 10; i++) {
+                    pages.push(i)
+                    if (i === pagesCount) break
+                }
+            }
+        } else {
+            for (let i = 1; i <= pagesCount; i++) {
+                pages.push(i);
+            }
+        }
+    }
+
     render() {
 
-        const { users, toggleFollow, totalUsersCount, pageSize } = this.props;
+        const { users, toggleFollow, totalUsersCount, pageSize, currentPage } = this.props;
 
-        const pageCount = Math.ceil(totalUsersCount / pageSize);
+        const pagesCount = Math.ceil(totalUsersCount / pageSize);
         const pages = [];
-        for (let i = 1; i <= pageCount; i++) {
-            pages.push(i);
-        }
+        this.pagesCreator(pages, pagesCount, currentPage);
+
         return (
             <div className='users'>
-                <div>
-                    {
-                        pages.map(page => {
-                            return (
-                                <span
-                                    className={this.props.currentPage === page ? 'users__selected-page' : 'users__pagination'}
-                                    onClick={() => { this.onPageChenged(page) }}
-                                >
-                                    {page}
-                                </span>
-                            );
-                        })
-                    }
-                </div>
                 {
                     users.map(user => {
                         return (
@@ -81,6 +86,20 @@ export default class Users extends Component {
                         );
                     })
                 }
+                <div className='users__pages'>
+                    {
+                        pages.map(page => {
+                            return (
+                                <span
+                                    className={this.props.currentPage === page ? 'pages__selected-page' : 'pages__pagination'}
+                                    onClick={() => { this.onPageChenged(page) }}
+                                >
+                                    {page}
+                                </span>
+                            );
+                        })
+                    }
+                </div>
             </div>
         );
     };
