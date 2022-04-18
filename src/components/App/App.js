@@ -2,14 +2,14 @@ import React from 'react';
 
 import './App.css';
 import Content from '../Content/Content';
-import Header from '../Header/Header';
 import Navbar from '../Navbar/Navbar';
+import HeaderContainer from '../Header/HeaderContainer';
 
 const App = () => {
 
     return (
         <div className='container'>
-            <Header />
+            <HeaderContainer />
             <Navbar />
             <Content />
         </div>

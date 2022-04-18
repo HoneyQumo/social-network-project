@@ -2,6 +2,7 @@ import React from 'react'
 
 import './Users.css';
 import userPhoto from '../../assets/images/default-avatar-icon.png';
+import { NavLink } from 'react-router-dom';
 
 const Users = ({ users, toggleFollow, totalUsersCount, pageSize, currentPage, onPageChenged }) => {
 
@@ -36,9 +37,9 @@ const Users = ({ users, toggleFollow, totalUsersCount, pageSize, currentPage, on
                     return (
                         <div key={user.id} className='user'>
                             <div className='user__content'>
-                                <div className='user__image'>
+                                <NavLink to={`/profile/${user.id}`} className='user__image'>
                                     <img src={user.photos.small !== null ? user.photos.small : userPhoto} alt='avatar' />
-                                </div>
+                                </NavLink>
                                 <button onClick={() => { toggleFollow(user.id) }}
                                     className={user.followed ? 'user__button followed-true' : 'user__button followed-false'}
                                 >
@@ -46,9 +47,9 @@ const Users = ({ users, toggleFollow, totalUsersCount, pageSize, currentPage, on
                                 </button>
                             </div>
                             <div className='user__info'>
-                                <h2 className='user__fullname'>
+                                <NavLink to={`/profile/${user.id}`} className='user__fullname'>
                                     {user.name}
-                                </h2>
+                                </NavLink>
                                 <div className='user__status'>
                                     {user.status}
                                 </div>

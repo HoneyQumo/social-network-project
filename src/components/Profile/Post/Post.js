@@ -1,13 +1,14 @@
 import React from 'react';
 
 import './Post.css';
+import defaultAvatar from '../../../assets/images/default-avatar-icon.png';
 
-const Post = ({ text, likeCount }) => {
+const Post = ({ text, likeCount, profile }) => {
     return (
         <div className='post'>
             <div className='post__wrapper'>
                 <div className='post__avatar'>
-                    <img src='https://sun9-1.userapi.com/impf/rkPYEmYJGK-bU4USsFHd4xy2Q4zSfFxB0wtRxQ/_CFKmS78e_M.jpg?size=720x1080&quality=96&sign=78c91907568a3ef1d33ea9f09bf14da7&type=album' alt='avatar' />
+                    <img src={profile.photos.small ? profile.photos.small : defaultAvatar} alt='avatar' />
                 </div>
                 <div className='post__text'>
                     {text}

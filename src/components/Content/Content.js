@@ -5,15 +5,18 @@ import './Content.css';
 import Messages from '../Messages/Messages';
 import Music from '../Music/Music';
 import News from '../News/News';
-import Profile from '../Profile/Profile';
 import Settings from '../Settings/Settings';
 import UsersContainer from '../Users/UsersContainer';
+import ProfileContainerParams from '../Profile/ProfileContainerParams';
 
 const Content = () => {
     return (
         <div className='content'>
             <Routes >
-                <Route path='/profile' element={<Profile />} />
+                <Route path='/profile/'>
+                    <Route path=':userId' element={<ProfileContainerParams />} />
+                    <Route path='' element={<ProfileContainerParams />} />
+                </Route>
                 <Route path='/messages/*' element={<Messages />} />
                 <Route path='/news' element={<News />} />
                 <Route path='/music' element={<Music />} />

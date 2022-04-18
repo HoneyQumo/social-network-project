@@ -6,7 +6,7 @@ import { updateNewPostTextActionCreator, addPostActionCreator } from '../../../r
 import { connect } from 'react-redux';
 
 
-const MyPosts = ({ postsData, newPostText, addPost, onPostChange }) => {
+const MyPosts = ({ postsData, newPostText, addPost, onPostChange, profile }) => {
 
     return (
         <div className='mypost'>
@@ -29,7 +29,7 @@ const MyPosts = ({ postsData, newPostText, addPost, onPostChange }) => {
             <div className='myposts'>
                 {postsData.map(({ id, text, likeCount }) => {
                     return (
-                        <Post key={id} text={text} likeCount={likeCount} />
+                        <Post key={id} text={text} likeCount={likeCount} profile={profile} />
                     );
                 })}
             </div>

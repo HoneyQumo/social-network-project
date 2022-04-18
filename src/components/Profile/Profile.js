@@ -2,25 +2,34 @@ import React from 'react';
 
 import './Profile.css';
 import MyPosts from './MyPosts/MyPosts';
+import Loader from '../Loader/Loader';
+import defaulAvatar from '../../assets/images/default-avatar-icon.png';
 
-const Profile = () => {
+const Profile = ({ profile }) => {
+
+    if (!profile) {
+        return (
+            <Loader />
+        );
+    }
+
     return (
         <div className='profile__wrapper'>
             <div className='profile'>
                 <div className='profile__avatar'>
-                    <img src='https://sun9-1.userapi.com/impf/rkPYEmYJGK-bU4USsFHd4xy2Q4zSfFxB0wtRxQ/_CFKmS78e_M.jpg?size=720x1080&quality=96&sign=78c91907568a3ef1d33ea9f09bf14da7&type=album' alt='avatar' />
+                    <img src={profile.photos.large ? profile.photos.large : defaulAvatar} alt='Avatar' />
                 </div>
                 <div className='profile__info'>
                     <div className='profile__name'>
-                        Имя: Никита Червяков
+                        {profile.fullName}
                     </div>
-                    <div className='profile__age'>
-                        Возраст: 23
+                    <div className='profile__about'>
+                        {`Обо мне: ${profile.aboutMe}`}
                     </div>
                 </div>
             </div>
 
-            <MyPosts />
+            <MyPosts profile={profile} />
         </div>
     );
 };
