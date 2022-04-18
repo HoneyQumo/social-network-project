@@ -3,6 +3,7 @@ import React from 'react'
 import './Users.css';
 import userPhoto from '../../assets/images/default-avatar-icon.png';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 const Users = ({ users, toggleFollow, totalUsersCount, pageSize, currentPage, onPageChenged }) => {
 
@@ -40,11 +41,33 @@ const Users = ({ users, toggleFollow, totalUsersCount, pageSize, currentPage, on
                                 <NavLink to={`/profile/${user.id}`} className='user__image'>
                                     <img src={user.photos.small !== null ? user.photos.small : userPhoto} alt='avatar' />
                                 </NavLink>
-                                <button onClick={() => { toggleFollow(user.id) }}
-                                    className={user.followed ? 'user__button followed-true' : 'user__button followed-false'}
-                                >
-                                    {user.followed ? 'Удалить' : 'Добавить'}
-                                </button>
+                                {user.followed ?
+                                    <button className='user__button followed-true' onClick={() => {
+                                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                                            withCredentials: true,
+                                            headers: {
+                                                "API-KEY": "ac73d958-5928-4823-a571-86a1cb2e91d0"
+                                            },
+                                        }).then(res => {
+                                            if (res.data.resultCode === 0) {
+                                                toggleFollow(user.id);
+                                            }
+                                        });
+                                    }}>Удалить</button> :
+
+                                    <button className='user__button followed-false' onClick={() => {
+                                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                                            withCredentials: true,
+                                            headers: {
+                                                "API-KEY": "ac73d958-5928-4823-a571-86a1cb2e91d0"
+                                            },
+                                        }).then(res => {
+                                            if (res.data.resultCode === 0) {
+                                                toggleFollow(user.id);
+                                            }
+                                        });
+                                    }}>Добавить</button>
+                                }
                             </div>
                             <div className='user__info'>
                                 <NavLink to={`/profile/${user.id}`} className='user__fullname'>
