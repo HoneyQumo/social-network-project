@@ -3,6 +3,7 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const BUTTON_IS_PRESSED = 'BUTTON_IS_PRESSED';
 
 // const IMAGE_URL = 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/';
 
@@ -16,7 +17,8 @@ const initialState = {
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    isPressedButton: []
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -60,6 +62,14 @@ const usersReducer = (state = initialState, action) => {
                 isFetching: action.isFetching
             };
 
+        case BUTTON_IS_PRESSED:
+            return {
+                ...state,
+                isPressedButton: action.isFetching
+                    ? [...state.isPressedButton, action.userId]
+                    : state.isPressedButton.filter(id => id !== action.userId)
+            };
+
         default:
             return state;
     }
@@ -77,5 +87,7 @@ export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, curren
 export const setUsersTotalCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount });
 
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
+
+export const buttonIsPressed = (isFetching, userId) => ({ type: BUTTON_IS_PRESSED, isFetching, userId });
 
 export default usersReducer;

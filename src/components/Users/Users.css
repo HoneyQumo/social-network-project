@@ -57,6 +57,11 @@
     filter: brightness(90%);
 }
 
+.user__button:disabled {
+    cursor: not-allowed;
+    filter: grayscale(50%);
+}
+
 .followed-false {
     background-color: #4d7ea8;
 }

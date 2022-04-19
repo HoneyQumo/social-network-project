@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-import { toggleFollow, setUsers, setCurrentPage, setUsersTotalCount, toggleIsFetching } from '../../reducers/users-reducer';
+import { toggleFollow, setUsers, setCurrentPage, setUsersTotalCount, toggleIsFetching, buttonIsPressed } from '../../reducers/users-reducer';
 import Users from './Users';
 import Loader from '../Loader/Loader';
 import { getUsers } from '../../api/api';
@@ -31,7 +31,8 @@ class UsersContainer extends Component {
     };
 
     render() {
-        const { users, toggleFollow, totalUsersCount, pageSize, currentPage, isFetching } = this.props;
+        const { users, toggleFollow, totalUsersCount, pageSize,
+            currentPage, isFetching, isPressedButton, buttonIsPressed } = this.props;
 
         return (
             <>
@@ -42,20 +43,23 @@ class UsersContainer extends Component {
                     pageSize={pageSize}
                     currentPage={currentPage}
                     onPageChenged={this.onPageChenged}
+                    isPressedButton={isPressedButton}
+                    buttonIsPressed={buttonIsPressed}
                 />}
             </>
         );
     };
 };
 
-const mapStateToProps = ({ usersPage: { users, pageSize, totalUsersCount, currentPage, isFetching } }) => ({
+const mapStateToProps = ({ usersPage: { users, pageSize, totalUsersCount, currentPage, isFetching, isPressedButton } }) => ({
     users,
     pageSize,
     totalUsersCount,
     currentPage,
-    isFetching
+    isFetching,
+    isPressedButton
 });
 
-const mapDispatchToProps = { toggleFollow, setUsers, setCurrentPage, setUsersTotalCount, toggleIsFetching };
+const mapDispatchToProps = { toggleFollow, setUsers, setCurrentPage, setUsersTotalCount, toggleIsFetching, buttonIsPressed };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
