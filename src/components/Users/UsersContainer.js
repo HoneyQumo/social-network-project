@@ -1,50 +1,37 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-import { toggleFollow, setUsers, setCurrentPage, setUsersTotalCount, toggleIsFetching, buttonIsPressed } from '../../reducers/users-reducer';
+import { toggleFollow, setCurrentPage, buttonIsPressed, getUsers, getUsersOnCurrentPage, follow, unfollow } from '../../reducers/users-reducer';
 import Users from './Users';
 import Loader from '../Loader/Loader';
-import { getUsers } from '../../api/api';
 
 
 class UsersContainer extends Component {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-
-        getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.setUsers(data.items);
-            this.props.setUsersTotalCount(data.totalCount);
-            this.props.toggleIsFetching(false);
-        });
-
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     };
 
     onPageChenged = (pageNumber) => {
-        this.props.toggleIsFetching(true);
-        this.props.setCurrentPage(pageNumber);
-
-        getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.setUsers(data.items);
-            this.props.toggleIsFetching(false);
-        });
+        this.props.getUsersOnCurrentPage(pageNumber, this.props.pageSize);
     };
 
     render() {
-        const { users, toggleFollow, totalUsersCount, pageSize,
-            currentPage, isFetching, isPressedButton, buttonIsPressed } = this.props;
+        const { users, totalUsersCount, pageSize,
+            currentPage, isFetching, isPressedButton,
+            follow, unfollow } = this.props;
 
         return (
             <>
                 {isFetching ? <Loader /> : <Users
                     users={users}
-                    toggleFollow={toggleFollow}
                     totalUsersCount={totalUsersCount}
                     pageSize={pageSize}
                     currentPage={currentPage}
                     onPageChenged={this.onPageChenged}
                     isPressedButton={isPressedButton}
-                    buttonIsPressed={buttonIsPressed}
+                    follow={follow}
+                    unfollow={unfollow}
                 />}
             </>
         );
@@ -60,6 +47,11 @@ const mapStateToProps = ({ usersPage: { users, pageSize, totalUsersCount, curren
     isPressedButton
 });
 
-const mapDispatchToProps = { toggleFollow, setUsers, setCurrentPage, setUsersTotalCount, toggleIsFetching, buttonIsPressed };
+const mapDispatchToProps = {
+    toggleFollow, setCurrentPage,
+    buttonIsPressed, getUsers,
+    getUsersOnCurrentPage,
+    follow, unfollow
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);

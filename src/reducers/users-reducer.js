@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 const TOGGLE_FOLLOW = "TOGGLE_FOLLOW";
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
@@ -76,7 +78,7 @@ const usersReducer = (state = initialState, action) => {
 };
 
 
-// ACTION CREATORS
+//>---------------- ACTION CREATORS -----------------<
 
 export const toggleFollow = (userId) => ({ type: TOGGLE_FOLLOW, userId });
 
@@ -89,5 +91,51 @@ export const setUsersTotalCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 
 export const buttonIsPressed = (isFetching, userId) => ({ type: BUTTON_IS_PRESSED, isFetching, userId });
+
+
+//>---------------- THUNKS -----------------<
+
+export const getUsers = (currentPage, pageSize) => (dispatch) => {
+    dispatch(toggleIsFetching(false));
+
+    usersAPI.getUsers(currentPage, pageSize).then(data => {
+        dispatch(setUsers(data.items));
+        dispatch(setUsersTotalCount(data.totalCount));
+        dispatch(toggleIsFetching(false));
+    });
+};
+
+export const getUsersOnCurrentPage = (currentPage, pageSize) => (dispatch) => {
+    dispatch(toggleIsFetching(false));
+    dispatch(setCurrentPage(currentPage));
+
+    usersAPI.getUsers(currentPage, pageSize).then(data => {
+        dispatch(setUsers(data.items));
+        dispatch(setUsersTotalCount(data.totalCount));
+        dispatch(toggleIsFetching(false));
+    });
+};
+
+export const follow = (userId) => (dispatch) => {
+    dispatch(buttonIsPressed(true, userId));
+    usersAPI.follow(userId)
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(toggleFollow(userId));
+            }
+            dispatch(buttonIsPressed(false, userId));
+        });
+};
+
+export const unfollow = (userId) => (dispatch) => {
+    dispatch(buttonIsPressed(true, userId));
+    usersAPI.unfollow(userId)
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(toggleFollow(userId));
+            }
+            dispatch(buttonIsPressed(false, userId));
+        });
+};
 
 export default usersReducer;

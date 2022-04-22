@@ -1,12 +1,12 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom';
 
 import './Users.css';
 import userPhoto from '../../assets/images/default-avatar-icon.png';
-import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 
-const Users = ({ users, toggleFollow, totalUsersCount, pageSize,
-    currentPage, onPageChenged, isPressedButton, buttonIsPressed }) => {
+const Users = ({ users, totalUsersCount, pageSize,
+    currentPage, onPageChenged, isPressedButton,
+    follow, unfollow }) => {
 
     const pagesCreator = (pages, pagesCount, currentPage) => {
         if (pagesCount > 10) {
@@ -46,41 +46,15 @@ const Users = ({ users, toggleFollow, totalUsersCount, pageSize,
                                     <button
                                         disabled={isPressedButton.some(id => id === user.id)}
                                         className='user__button followed-true'
-                                        onClick={() => {
-                                            buttonIsPressed(true, user.id);
-                                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-                                                withCredentials: true,
-                                                headers: {
-                                                    "API-KEY": "ac73d958-5928-4823-a571-86a1cb2e91d0"
-                                                },
-                                            }).then(res => {
-                                                if (res.data.resultCode === 0) {
-                                                    toggleFollow(user.id);
-                                                }
-                                                buttonIsPressed(false, user.id);
-                                            });
-                                        }}
+                                        onClick={() => { unfollow(user.id) }}
                                     >
                                         Удалить
-                                    </button> :
-
+                                    </button>
+                                    :
                                     <button
                                         disabled={isPressedButton.some(id => id === user.id)}
                                         className='user__button followed-false'
-                                        onClick={() => {
-                                            buttonIsPressed(true, user.id);
-                                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-                                                withCredentials: true,
-                                                headers: {
-                                                    "API-KEY": "ac73d958-5928-4823-a571-86a1cb2e91d0"
-                                                },
-                                            }).then(res => {
-                                                if (res.data.resultCode === 0) {
-                                                    toggleFollow(user.id);
-                                                }
-                                                buttonIsPressed(false, user.id);
-                                            });
-                                        }}
+                                        onClick={() => { follow(user.id) }}
                                     >
                                         Добавить
                                     </button>
