@@ -1,13 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './Messages.css';
 import MessageItem from './MessageItem/MessageItem';
 import ChatItems from './ChatItems/ChatItems';
 import { sendMessageActionCreator, updateNewMessageBodyActionCreator } from '../../reducers/messgaes-reducer';
-import { connect } from 'react-redux';
+import { withAuthNavigate } from '../../HOC/withAuthNavigate';
+import { compose } from 'redux';
 
-const Messages = ({ messagesUsersData, messagesChatData, newMessageBody, onSendMessageClick, onNewMessageChange }) => {
-
+const Messages = ({ messagesUsersData, messagesChatData, newMessageBody, onSendMessageClick, onNewMessageChange, isAuth }) => {
     return (
         <div className='messages'>
             <div className='messages__users'>
@@ -53,6 +54,8 @@ const mapStateToProps = (state) => {
         messagesUsersData: state.messagePage.messagesUsersData,
         messagesChatData: state.messagePage.messagesChatData,
         newMessageBody: state.messagePage.newMessageBody,
+        isAuth: state.auth.isAuth
+
     };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -65,4 +68,7 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Messages);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthNavigate
+)(Messages);

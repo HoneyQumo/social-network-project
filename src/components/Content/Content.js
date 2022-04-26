@@ -8,6 +8,7 @@ import News from '../News/News';
 import Settings from '../Settings/Settings';
 import UsersContainer from '../Users/UsersContainer';
 import ProfileContainerParams from '../Profile/ProfileContainerParams';
+import LoginPage from '../Login/LoginPage';
 
 const Content = () => {
     return (
@@ -22,6 +23,7 @@ const Content = () => {
                 <Route path='/music' element={<Music />} />
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/users' element={<UsersContainer />} />
+                <Route path='/login' element={<LoginPage />} />
             </Routes>
         </div>
     );

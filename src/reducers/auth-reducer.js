@@ -27,12 +27,10 @@ const authReducer = (state = initialState, action) => {
 };
 
 //>-----------------ACTION CREATOR-----------------<
-
 export const setAuthUserData = (id, login, email) => ({ type: SET_USER_DATA, data: { id, login, email } });
 
 
 //>-----------------THUNK-----------------<
-
 export const authorization = () => (dispatch) => {
     authAPI.me()
         .then(res => {
