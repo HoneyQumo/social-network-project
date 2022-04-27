@@ -1,8 +1,9 @@
-import { usersAPI } from "../api/api";
+import { profileAPI, usersAPI } from "../api/api";
 
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const SET_USET_PROFILE = 'SET_USET_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 const initialState = {
     postsData: [
@@ -11,7 +12,8 @@ const initialState = {
         { id: 3, text: 'Это мой 3 пост', likeCount: 3 },
     ],
     newPostText: 'honeyqumo',
-    profile: null
+    profile: null,
+    status: ''
 };
 
 let maxId = 4;
@@ -45,6 +47,12 @@ const profileReducer = (state = initialState, action) => {
                 profile: action.profile
             };
 
+        case SET_STATUS:
+            return {
+                ...state,
+                status: action.status
+            };
+
         default:
             return state;
     };
@@ -58,13 +66,32 @@ export const updateNewPostTextActionCreator = (text) => ({ type: UPDATE_NEW_POST
 
 export const setUserProfile = (profile) => ({ type: SET_USET_PROFILE, profile });
 
+export const setStatus = (status) => ({ type: SET_STATUS, status });
+
+
 
 // >-----------------THUNK-----------------<
 export const getUserProfile = (userId) => (dispatch) => {
     usersAPI.getProfile(userId)
         .then(res => {
             dispatch(setUserProfile(res.data));
-        })
+        });
+};
+
+export const getStatus = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId)
+        .then(res => {
+            dispatch(setStatus(res.data));
+        });
+};
+
+export const updateStatus = (status) => (dispatch) => {
+    profileAPI.updateStatus(status)
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(setStatus(status));
+            };
+        });
 };
 
 export default profileReducer;
