@@ -1,0 +1,13 @@
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-page__title {
+    color: #272932;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}

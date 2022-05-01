@@ -59,7 +59,7 @@
 
 .user__button:disabled {
     cursor: not-allowed;
-    filter: grayscale(50%);
+    filter: grayscale(.8);
 }
 
 .followed-false {
