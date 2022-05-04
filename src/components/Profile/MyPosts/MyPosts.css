@@ -3,12 +3,24 @@
     flex-direction: column;
     width: 250px;
 }
-.mypost > *:not(:last-child) {
+
+.mypost>*:not(:last-child) {
     margin-bottom: 10px;
 }
 
-.mypost__area {
+.mypost__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.mypost__field {
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 4px;
     resize: none;
+    overflow: hidden;
 }
 
 .mypost__button {
@@ -23,6 +35,7 @@
     width: 95px;
     color: #fff;
 }
+
 .mypost__button:hover {
     filter: brightness(110%);
     transition: filter 0.3s ease 0s;
@@ -38,6 +51,6 @@
     border-bottom: 1px solid #8284895b;
 }
 
-.myposts > *:not(:last-child) {
+.myposts>*:not(:last-child) {
     margin-bottom: 15px;
 }

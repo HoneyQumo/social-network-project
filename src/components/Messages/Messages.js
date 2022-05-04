@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import './Messages.css';
 import MessageItem from './MessageItem/MessageItem';
 import ChatItems from './ChatItems/ChatItems';
-import { sendMessageActionCreator, updateNewMessageBodyActionCreator } from '../../reducers/messgaes-reducer';
+import { sendMessageActionCreator } from '../../reducers/messgaes-reducer';
 import { withAuthNavigate } from '../../HOC/withAuthNavigate';
 import { compose } from 'redux';
+import { Field, Form, Formik } from 'formik';
 
-const Messages = ({ messagesUsersData, messagesChatData, newMessageBody, onSendMessageClick, onNewMessageChange, isAuth }) => {
+const Messages = ({ messagesUsersData, messagesChatData, onSendMessageClick }) => {
     return (
         <div className='messages'>
             <div className='messages__users'>
@@ -30,7 +31,7 @@ const Messages = ({ messagesUsersData, messagesChatData, newMessageBody, onSendM
                         })
                     }
                 </div>
-                <div className='chat__field'>
+                {/* <div className='chat__field'>
                     <textarea
                         placeholder='Напишите сообщение...'
                         className='chat__text'
@@ -43,7 +44,26 @@ const Messages = ({ messagesUsersData, messagesChatData, newMessageBody, onSendM
                     >
                         Отправить
                     </button>
-                </div>
+                </div> */}
+                <Formik
+                    initialValues={{
+                        newMessage: ''
+                    }}
+                    onSubmit={(values) => onSendMessageClick(values.newMessage)}
+                >
+                    {({ handleSubmit }) => (
+                        <Form className='chat__field' onSubmit={handleSubmit}>
+                            <Field
+                                as='textarea'
+                                name='newMessage'
+                                id='newMessage'
+                                className='chat__text'
+                                placeholder='Напишите сообщение...'
+                            />
+                            <button type='submit' className='chat__btn'>Отправить</button>
+                        </Form>
+                    )}
+                </Formik>
             </div>
         </div>
     );
@@ -53,18 +73,13 @@ const mapStateToProps = (state) => {
     return {
         messagesUsersData: state.messagePage.messagesUsersData,
         messagesChatData: state.messagePage.messagesChatData,
-        newMessageBody: state.messagePage.newMessageBody,
         isAuth: state.auth.isAuth
 
     };
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSendMessageClick: () => dispatch(sendMessageActionCreator()),
-        onNewMessageChange: (e) => {
-            const body = e.target.value;
-            dispatch(updateNewMessageBodyActionCreator(body))
-        }
+        onSendMessageClick: (newMessage) => dispatch(sendMessageActionCreator(newMessage)),
     };
 }
 
