@@ -22,29 +22,13 @@ const Messages = ({ messagesUsersData, messagesChatData, onSendMessageClick }) =
                 }
             </div>
             <div className='messages__chat'>
-                <div>
-                    {
-                        messagesChatData.map(({ id, msg }) => {
-                            return (
-                                <ChatItems key={id} id={id} msg={msg} />
-                            );
-                        })
-                    }
-                </div>
-                {/* <div className='chat__field'>
-                    <textarea
-                        placeholder='Напишите сообщение...'
-                        className='chat__text'
-                        value={newMessageBody}
-                        onChange={onNewMessageChange}
-                    />
-                    <button
-                        className='chat__btn'
-                        onClick={onSendMessageClick}
-                    >
-                        Отправить
-                    </button>
-                </div> */}
+                {
+                    messagesChatData.map(({ id, msg }) => {
+                        return (
+                            <ChatItems key={id} id={id} msg={msg} />
+                        );
+                    })
+                }
                 <Formik
                     initialValues={{
                         newMessage: ''
@@ -81,7 +65,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onSendMessageClick: (newMessage) => dispatch(sendMessageActionCreator(newMessage)),
     };
-}
+};
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),

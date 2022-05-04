@@ -5,10 +5,8 @@ import './ChatItems.css';
 
 const ChatItems = ({ msg }) => {
     return (
-        <div className='chat__items'>
-            <div className='chat__item'>
-                {msg}
-            </div>
+        <div className='chat__item'>
+            {msg}
         </div>
     );
 };
