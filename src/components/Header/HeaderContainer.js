@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { authorization } from '../../reducers/auth-reducer';
+import { authorization, logout } from '../../reducers/auth-reducer';
 import Header from './Header';
 
 class HeaderContainer extends Component {
@@ -22,6 +22,6 @@ const mapStateToProps = (state) => ({
     id: state.auth.id
 });
 
-const mapDispatchToProps = { authorization };
+const mapDispatchToProps = { authorization, logout };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);

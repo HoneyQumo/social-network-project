@@ -1,15 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Field, Form, Formik } from 'formik';
+import { compose } from 'redux';
+import * as Yup from 'yup';
 
 import './Messages.css';
 import MessageItem from './MessageItem/MessageItem';
 import ChatItems from './ChatItems/ChatItems';
 import { sendMessageActionCreator } from '../../reducers/messgaes-reducer';
 import { withAuthNavigate } from '../../HOC/withAuthNavigate';
-import { compose } from 'redux';
-import { Field, Form, Formik } from 'formik';
 
 const Messages = ({ messagesUsersData, messagesChatData, onSendMessageClick }) => {
+
+    const validationSchema = Yup.object().shape({
+        newMessage: Yup
+            .string()
+            .required()
+            .min(1)
+            .max(50)
+    });
+
     return (
         <div className='messages'>
             <div className='messages__users'>
@@ -33,9 +43,11 @@ const Messages = ({ messagesUsersData, messagesChatData, onSendMessageClick }) =
                     initialValues={{
                         newMessage: ''
                     }}
+                    validateOnBlur
                     onSubmit={(values) => onSendMessageClick(values.newMessage)}
+                    validationSchema={validationSchema}
                 >
-                    {({ handleSubmit }) => (
+                    {({ handleSubmit, errors, }) => (
                         <Form className='chat__field' onSubmit={handleSubmit}>
                             <Field
                                 as='textarea'
@@ -44,7 +56,7 @@ const Messages = ({ messagesUsersData, messagesChatData, onSendMessageClick }) =
                                 className='chat__text'
                                 placeholder='Напишите сообщение...'
                             />
-                            <button type='submit' className='chat__btn'>Отправить</button>
+                            <button disabled={errors.newMessage} type='submit' className='chat__btn'>Отправить</button>
                         </Form>
                     )}
                 </Formik>
@@ -58,9 +70,9 @@ const mapStateToProps = (state) => {
         messagesUsersData: state.messagePage.messagesUsersData,
         messagesChatData: state.messagePage.messagesChatData,
         isAuth: state.auth.isAuth
-
     };
 };
+
 const mapDispatchToProps = (dispatch) => {
     return {
         onSendMessageClick: (newMessage) => dispatch(sendMessageActionCreator(newMessage)),

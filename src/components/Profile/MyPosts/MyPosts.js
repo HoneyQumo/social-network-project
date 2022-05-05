@@ -1,12 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
 
 import './MyPosts.css';
 import Post from '../Post/Post';
 import { addPostActionCreator } from '../../../reducers/profile-reducer';
-import { connect } from 'react-redux';
-import { Field, Form, Formik } from 'formik';
 
 const MyPosts = ({ postsData, addPost, profile }) => {
+
+    const validationSchema = Yup.object().shape({
+        newPost: Yup
+            .string()
+            .required()
+            .min(1)
+            .max(20)
+    });
 
     return (
         <div className='mypost'>
@@ -17,8 +26,9 @@ const MyPosts = ({ postsData, addPost, profile }) => {
                     newPost: ''
                 }}
                 onSubmit={(values) => addPost(values.newPost)}
+                validationSchema={validationSchema}
             >
-                {({ handleSubmit }) => (
+                {({ handleSubmit, errors, touched }) => (
                     <Form className='mypost__form' onSubmit={handleSubmit}>
                         <Field
                             as='textarea'
@@ -27,7 +37,7 @@ const MyPosts = ({ postsData, addPost, profile }) => {
                             className='mypost__field'
                             placeholder='Введите текст...'
                         />
-                        <button type='submit' className='mypost__button' >Добавить</button>
+                        <button disabled={errors.newPost} type='submit' className='mypost__button' >Добавить</button>
                     </Form>
                 )}
             </Formik>

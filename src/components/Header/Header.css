@@ -21,11 +21,18 @@
     object-fit: cover;
 }
 
-.header__login-block {}
-
 .login-block__auth,
-.login-block__not-auth {
+.login-block__not-auth,
+.login-block__auth a.active {
     color: #272932;
     font-weight: 600;
     font-size: 16px;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+}
+
+.login-block__auth:hover,
+.login-block__not-auth:hover,
+.login-block__auth a.active:hover {
+    color: #B6C2D9;
 }

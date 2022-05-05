@@ -1,11 +1,14 @@
 import { Formik } from 'formik';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 
 import './LoginForm.css';
 
-const LoginForm = () => {
+const LoginForm = ({ isAuth, login }) => {
+
+    const navigate = useNavigate();
 
     const validationSchema = Yup.object().shape({
         email: Yup
@@ -26,7 +29,10 @@ const LoginForm = () => {
                     password: ''
                 }}
                 validateOnBlur
-                onSubmit={(values) => console.log(values)}
+                onSubmit={(values) => {
+                    login(values.email, values.password);
+                    navigate('/profile/');
+                }}
                 validationSchema={validationSchema}
             >
                 {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
@@ -38,7 +44,7 @@ const LoginForm = () => {
                                 Почта
                             </label>
                             <input
-                                className='email__input'
+                                className={touched.email && errors.email ? 'form_error_border' : 'email__input'}
                                 type='text'
                                 name='email'
                                 onChange={handleChange}
@@ -54,7 +60,7 @@ const LoginForm = () => {
                                 Пароль
                             </label>
                             <input
-                                className='password__input'
+                                className={touched.password && errors.password ? 'form_error_border' : 'password__input'}
                                 type='password'
                                 name='password'
                                 onChange={handleChange}

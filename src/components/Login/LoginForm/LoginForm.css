@@ -26,12 +26,15 @@
     height: 25px;
     padding: 5px;
     border-radius: 4px;
+    border: 2px solid transparent;
 }
 
 .email__input:focus,
 .password__input:focus {
-    outline: 1.5px solid #272932;
+    border: 2px solid #272932;
 }
+
+
 
 .login__button {
     border-radius: 4px;
@@ -61,4 +64,11 @@
     font-size: 12px;
     font-weight: 500;
     color: orangered;
+}
+
+.form_error_border {
+    height: 25px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 2px solid orangered;
 }

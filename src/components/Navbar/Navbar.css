@@ -18,7 +18,7 @@
     margin-bottom: 5px;
 }
 
-.navbar a::after {
+.navbar .navbar__item::after {
     content: "";
     display: block;
     position: absolute;
@@ -29,10 +29,10 @@
     transition: width 0.2s ease-out 0s;
 }
 
-.navbar a:hover::after {
+.navbar .navbar__item:hover::after {
     width: 100%;
 }
 
-a.active {
+.navbar a.active {
     color: #4d7ea8;
 }
