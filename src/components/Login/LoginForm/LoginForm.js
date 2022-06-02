@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 
@@ -8,7 +8,9 @@ import './LoginForm.css';
 
 const LoginForm = ({ isAuth, login }) => {
 
-    const navigate = useNavigate();
+    if (isAuth) {
+        return <Navigate to={'/profile/'} />
+    }
 
     const validationSchema = Yup.object().shape({
         email: Yup
@@ -29,13 +31,13 @@ const LoginForm = ({ isAuth, login }) => {
                     password: ''
                 }}
                 validateOnBlur
-                onSubmit={(values) => {
-                    login(values.email, values.password);
-                    navigate('/profile/');
+                onSubmit={(values, { setSubmitting, setStatus }) => {
+                    login(values.email, values.password, false, setStatus);
+                    setSubmitting(false);
                 }}
                 validationSchema={validationSchema}
             >
-                {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
+                {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty, status }) => (
                     <div className='login__form'>
                         <div className='form__email'>
                             <label htmlFor='email'
@@ -69,6 +71,7 @@ const LoginForm = ({ isAuth, login }) => {
                             />
                             {touched.password && errors.password && <div className='form__error'>{errors.password}</div>}
                         </div>
+                        {status && isValid ? <div className='form__error'>{status}</div> : null}
                         <button
                             className='login__button'
                             disabled={!isValid && !dirty}

@@ -24,6 +24,7 @@
 .login-block__auth,
 .login-block__not-auth,
 .login-block__auth a.active {
+    background-color: #4d7ea8;
     color: #272932;
     font-weight: 600;
     font-size: 16px;
@@ -34,5 +35,6 @@
 .login-block__auth:hover,
 .login-block__not-auth:hover,
 .login-block__auth a.active:hover {
-    color: #B6C2D9;
+    /* color: #B6C2D9; */
+    text-decoration: underline;
 }

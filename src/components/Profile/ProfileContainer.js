@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
 
 import Profile from './Profile';
-import { getUserProfile, getStatus, updateStatus } from '../../reducers/profile-reducer';
-import { withAuthNavigate } from '../../HOC/withAuthNavigate';
-import { compose } from 'redux';
 
 
 class ProfileContainer extends Component {
@@ -21,14 +17,17 @@ class ProfileContainer extends Component {
     };
 };
 
-const mapStateToProps = ({ profilePage, auth }) => ({
-    profile: profilePage.profile,
-    status: profilePage.status,
-    isAuth: auth.isAuth,
-});
+// const mapStateToProps = ({ profilePage, auth }) => ({
+//     profile: profilePage.profile,
+//     status: profilePage.status,
+//     isAuth: auth.isAuth,
+//     // authorizedUserId: auth.id
+// });
 
-const mapDispatchToProps = { getUserProfile, getStatus, updateStatus };
+// const mapDispatchToProps = { getUserProfile, getStatus, updateStatus };
 
-export default compose(
-    connect(mapStateToProps, mapDispatchToProps)
-)(ProfileContainer);
+// export default compose(
+//     connect(mapStateToProps, mapDispatchToProps)
+// )(ProfileContainer);
+
+export default ProfileContainer;

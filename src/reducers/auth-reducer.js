@@ -40,11 +40,13 @@ export const authorization = () => (dispatch) => {
         });
 };
 
-export const login = (email, password, rememberMe) => (dispatch) => {
+export const login = (email, password, rememberMe, setStatus) => (dispatch) => {
     authAPI.login(email, password, rememberMe)
         .then(res => {
             if (res.data.resultCode === 0) {
                 dispatch(authorization());
+            } else {
+                setStatus(res.data.messages)
             };
         });
 };

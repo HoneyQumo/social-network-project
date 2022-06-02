@@ -55,7 +55,7 @@
 }
 
 .login__button:disabled {
-    filter: grayscale(.8);
+    filter: grayscale(0.8);
     cursor: not-allowed;
 }
 
