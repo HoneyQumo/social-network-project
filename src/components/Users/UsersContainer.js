@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-import { toggleFollow, setCurrentPage, buttonIsPressed, getUsers, getUsersOnCurrentPage, follow, unfollow } from '../../reducers/users-reducer';
+import { toggleFollow, setCurrentPage, buttonIsPressed, requestUsers, getUsersOnCurrentPage, follow, unfollow } from '../../reducers/users-reducer';
 import Users from './Users';
 import Loader from '../Loader/Loader';
+import { getCurrentPage, getIsFetching, getIsPressedButton, getPageSize, getTotalUsersCount, getUsers } from '../../selectors/users-selectors';
 
 
 class UsersContainer extends Component {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
     };
 
     onPageChenged = (pageNumber) => {
@@ -38,18 +39,27 @@ class UsersContainer extends Component {
     };
 };
 
-const mapStateToProps = ({ usersPage: { users, pageSize, totalUsersCount, currentPage, isFetching, isPressedButton } }) => ({
-    users,
-    pageSize,
-    totalUsersCount,
-    currentPage,
-    isFetching,
-    isPressedButton
+// const mapStateToProps = (state) => ({
+//     users: state.usersPage.users,
+//     pageSize: state.usersPage.pageSize,
+//     totalUsersCount: state.usersPage.totalUsersCount,
+//     currentPage: state.usersPage.currentPage,
+//     isFetching: state.usersPage.isFetching,
+//     isPressedButton: state.usersPage.isPressedButton
+// });
+
+const mapStateToProps = (state) => ({
+    users: getUsers(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    isPressedButton: getIsPressedButton(state)
 });
 
 const mapDispatchToProps = {
     toggleFollow, setCurrentPage,
-    buttonIsPressed, getUsers,
+    buttonIsPressed, requestUsers,
     getUsersOnCurrentPage,
     follow, unfollow
 };

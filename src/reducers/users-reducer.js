@@ -95,7 +95,7 @@ export const buttonIsPressed = (isFetching, userId) => ({ type: BUTTON_IS_PRESSE
 
 //>---------------- THUNKS -----------------<
 
-export const getUsers = (currentPage, pageSize) => (dispatch) => {
+export const requestUsers = (currentPage, pageSize) => (dispatch) => {
     dispatch(toggleIsFetching(false));
 
     usersAPI.getUsers(currentPage, pageSize).then(data => {
