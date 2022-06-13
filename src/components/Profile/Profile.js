@@ -4,6 +4,7 @@ import './Profile.css';
 import MyPosts from './MyPosts/MyPosts';
 import Loader from '../Loader/Loader';
 import defaulAvatar from '../../assets/images/default-avatar-icon.png';
+import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
 
 const Profile = ({ profile, status, updateStatus }) => {
@@ -24,7 +25,7 @@ const Profile = ({ profile, status, updateStatus }) => {
                     <div className='profile__name'>
                         {profile.fullName}
                     </div>
-                    <ProfileStatus status={status} updateStatus={updateStatus} />
+                    <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
                     <div className='profile__about'>
                         {`Обо мне: ${profile.aboutMe}`}
                     </div>
