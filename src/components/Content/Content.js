@@ -11,22 +11,22 @@ import ProfileContainerParams from '../Profile/ProfileContainerParams';
 import LoginPage from '../Login/LoginPage';
 
 const Content = () => {
-    return (
-        <div className='content'>
-            <Routes >
-                <Route path='/profile/'>
-                    <Route path=':userId' element={<ProfileContainerParams />} />
-                    <Route path='' element={<ProfileContainerParams />} />
-                </Route>
-                <Route path='/messages/*' element={<Messages />} />
-                <Route path='/news' element={<News />} />
-                <Route path='/music' element={<Music />} />
-                <Route path='/settings' element={<Settings />} />
-                <Route path='/users' element={<UsersContainer />} />
-                <Route path='/login' element={<LoginPage />} />
-            </Routes>
-        </div>
-    );
+	return (
+		<div className='content'>
+			<Routes>
+				<Route path='/profile/'>
+					<Route path=':userId' element={<ProfileContainerParams />} />
+					<Route path='' element={<ProfileContainerParams />} />
+				</Route>
+				<Route path='/messages/*' element={<Messages />} />
+				<Route path='/news' element={<News />} />
+				<Route path='/music' element={<Music />} />
+				<Route path='/settings' element={<Settings />} />
+				<Route path='/users' element={<UsersContainer />} />
+				<Route path='/login' element={<LoginPage />} />
+			</Routes>
+		</div>
+	);
 };
 
 export default Content;

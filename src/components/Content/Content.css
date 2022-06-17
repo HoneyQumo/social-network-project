@@ -1,10 +1,10 @@
 .content {
-    grid-area: content;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #b6c2d9;
+	grid-area: content;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #b6c2d9;
 
-    font-size: 16px;
-    font-weight: 400;
-    overflow: hidden;
+	font-size: 16px;
+	font-weight: 400;
+	overflow: hidden;
 }

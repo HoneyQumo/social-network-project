@@ -9,29 +9,27 @@ import { initializeApp } from '../../reducers/app-reducer';
 import Loader from '../Loader/Loader';
 
 class App extends Component {
+	componentDidMount() {
+		this.props.initializeApp();
+	}
 
-    componentDidMount() {
-        this.props.initializeApp();
-    };
+	render() {
+		if (!this.props.initialized) {
+			return <Loader />;
+		}
 
-    render() {
-
-        if (!this.props.initialized) {
-            return <Loader />
-        }
-
-        return (
-            <div className='container'>
-                <HeaderContainer />
-                <Navbar />
-                <Content />
-            </div>
-        );
-    };
-};
+		return (
+			<div className='container'>
+				<HeaderContainer />
+				<Navbar />
+				<Content />
+			</div>
+		);
+	}
+}
 
 const mapStateToProps = (state) => ({
-    initialized: state.app.initialized
+	initialized: state.app.initialized,
 });
 
 export default connect(mapStateToProps, { initializeApp })(App);

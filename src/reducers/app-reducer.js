@@ -1,37 +1,34 @@
-import { authorization } from "./auth-reducer";
+import { authorization } from './auth-reducer';
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
 const initialState = {
-    initialized: false,
+	initialized: false,
 };
 
 const appReducer = (state = initialState, action) => {
-    switch (action.type) {
+	switch (action.type) {
+		case INITIALIZED_SUCCESS:
+			return {
+				...state,
+				initialized: true,
+			};
 
-        case INITIALIZED_SUCCESS:
-            return {
-                ...state,
-                initialized: true,
-            };
-
-        default:
-            return state
-    };
+		default:
+			return state;
+	}
 };
 
 //>-----------------ACTION CREATOR-----------------<
 export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS });
 
-
-
 //>---------------------THUNK----------------------<
 export const initializeApp = () => (dispatch) => {
-    const promise = dispatch(authorization());
+	const promise = dispatch(authorization());
 
-    promise.then(() => {
-        dispatch(initializedSuccess());
-    });
+	promise.then(() => {
+		dispatch(initializedSuccess());
+	});
 };
 
 export default appReducer;
